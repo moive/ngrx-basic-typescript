@@ -1,4 +1,4 @@
-import { createStore, Store } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import {
 	decreaseAction,
 	divideAction,
@@ -29,7 +29,10 @@ store.dispatch(resetAction);
 console.log("RESET: ", store.getState());
 */
 
-const store: Store = createStore(counterReducer);
+const store = configureStore({
+	reducer: counterReducer,
+});
+// const store: Store = createStore(counterReducer);
 
 store.subscribe(() => {
 	console.log("Subs: ", store.getState());
