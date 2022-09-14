@@ -1,3 +1,4 @@
+import { createStore, Store } from "redux";
 import {
 	decreaseAction,
 	divideAction,
@@ -6,9 +7,9 @@ import {
 	resetAction,
 } from "./counter/counter.actions";
 import { counterReducer } from "./counter/counter.reducer";
-import { Store } from "./store";
+// import { Store } from "./store";
 
-const store = new Store(counterReducer, 10);
+/*const store = new Store(counterReducer, 10);
 
 console.log("STATE INITIAL", store.getState());
 
@@ -26,3 +27,16 @@ console.log("DIVIDE: ", store.getState());
 
 store.dispatch(resetAction);
 console.log("RESET: ", store.getState());
+*/
+
+const store: Store = createStore(counterReducer);
+
+store.subscribe(() => {
+	console.log("Subs: ", store.getState());
+});
+
+store.dispatch(increaseAction);
+store.dispatch(decreaseAction);
+store.dispatch(multipyAction);
+store.dispatch(divideAction);
+store.dispatch(resetAction);
